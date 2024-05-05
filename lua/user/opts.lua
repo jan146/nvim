@@ -15,5 +15,9 @@ vim.opt.expandtab = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
+-- Case-insensitive search
+vim.opt.ignorecase = true
+
 -- Good colors
 vim.opt.termguicolors = true
+

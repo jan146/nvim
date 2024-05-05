@@ -25,6 +25,8 @@ require("nvim-tree").setup({
 })
 
 -- Toggle tree
-vim.api.nvim_set_keymap('n', '<leader>t', '<Cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>tt', '<Cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
+-- Refresh tree
+vim.api.nvim_set_keymap('n', '<leader>tr', '<Cmd>NvimTreeRefresh<CR>', {noremap = true, silent = true})
 -- Change directory
 vim.api.nvim_set_keymap('n', '<leader>cd', ':lua require("nvim-tree.api").tree.change_root_to_node()<CR>', {noremap = true, silent = true})

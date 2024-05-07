@@ -102,4 +102,9 @@ return require('packer').startup(function(use)
       'numToStr/Comment.nvim',
   }
 
+  -- Git integration
+  use {
+      'lewis6991/gitsigns.nvim',
+  }
+
 end)

@@ -17,3 +17,7 @@ for i = 1, 12 do
     vim.api.nvim_set_keymap('i', '<A-F' .. i .. '>', '<nop>', { noremap = true })
 end
 
+-- Don't yank on paste over
+vim.keymap.set("x", "p", "P")
+vim.keymap.set("x", "P", "p")
+

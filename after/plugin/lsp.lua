@@ -42,6 +42,18 @@ require('mason-lspconfig').setup({
 
 -- Completions
 local cmp = require('cmp')
+local compare = require('cmp.config.compare')
+-- Custom comparator function to give priority to completions ending with '='
+local function comparator_assignable (entry1, entry2)
+  local word1 = entry1.completion_item.label
+  local word2 = entry2.completion_item.label
+  local ends_with_equal1 = word1:sub(-1) == '='
+  local ends_with_equal2 = word2:sub(-1) == '='
+  if ends_with_equal1 ~= ends_with_equal2 then
+    return ends_with_equal1
+  end
+  return nil
+end
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
     -- confirm completion
@@ -49,4 +61,19 @@ cmp.setup({
     -- show available completions
     ['<C-Space>'] = cmp.mapping.complete(),
   }),
+  sorting = {
+    comparators = {
+      comparator_assignable,
+      compare.offset,
+      compare.exact,
+      -- compare.scopes,
+      compare.score,
+      compare.recently_used,
+      compare.locality,
+      compare.kind,
+      -- compare.sort_text,
+      compare.length,
+      compare.order,
+    },
+  }
 })

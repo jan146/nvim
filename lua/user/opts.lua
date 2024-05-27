@@ -21,3 +21,6 @@ vim.opt.ignorecase = true
 -- Good colors
 vim.opt.termguicolors = true
 
+-- Keep minimum number of lines above and below cursor
+vim.opt.scrolloff = 5
+

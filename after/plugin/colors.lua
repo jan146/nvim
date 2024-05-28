@@ -1,5 +1,5 @@
 function Cscheme(cscheme)
-	cscheme = cscheme or "pywal"
+	cscheme = cscheme or "catppuccin"
 	vim.cmd.colorscheme(cscheme)
 end
 

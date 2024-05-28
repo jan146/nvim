@@ -1,7 +1,7 @@
 require'nvim-treesitter.configs'.setup {
     -- Colored brackets
     rainbow = {
-        enable = true,
+        enable = false,
         -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
         extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
@@ -50,7 +50,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- Force update rainbow brackets on text change
-vim.api.nvim_create_autocmd({"TextChanged", "TextChangedI", "TextChangedP", "TextChangedT"}, {
-  pattern = "*",
-  command = "TSDisable rainbow | TSEnable rainbow",
-})
+-- vim.api.nvim_create_autocmd({"TextChanged", "TextChangedI", "TextChangedP", "TextChangedT"}, {
+--   pattern = "*",
+--   command = "TSDisable rainbow | TSEnable rainbow",
+-- })

@@ -1,7 +1,15 @@
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-vim.keymap.set('n', '<leader>ph', function ()
-  builtin.find_files({ hidden = true, no_ignore = true })
+-- Search files, that may be hidden, ignore .git, don't include ignored files
+vim.keymap.set('n', '<leader>pff', function()
+    builtin.find_files({
+	    find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+    })
+end, {})
+-- Search files, that may be hidden, ignore .git, and include ignored files
+vim.keymap.set('n', '<leader>pfa', function ()
+    builtin.find_files({
+	    find_command = { "rg", "--files", "--hidden", "--no-ignore", "--glob", "!**/.git/*" },
+    })
 end, {})
 vim.keymap.set('n', '<leader>pg', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ps', function()

@@ -26,18 +26,31 @@ end)
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
-      "tailwindcss", "tsserver", "cssls", "html", "volar",
+      "tailwindcss", "ts_ls", "cssls", "html", "vue_ls",
       "lua_ls", "basedpyright", "clangd",
       "bashls",
   },
   handlers = {
     function(server_name)
-      require('lspconfig')[server_name].setup({})
+      local lspconfig = require("lspconfig")
+      -- if server_name == "basedpyright" then
+      --   lspconfig[server_name].setup({
+      --     settings = {
+      --       basedpyright = {
+      --         analysis = {
+      --           logLevel = "trace"
+      --         }
+      --       }
+      --     }
+      --   })
+      -- else
+        lspconfig[server_name].setup({})
+      -- end
     end,
-    volar = function()
-      require('lspconfig').volar.setup({})
+    vue_ls = function()
+      require('lspconfig').vue_ls.setup({})
     end,
-    tsserver = function()
+    ts_ls = function()
       local vue_typescript_plugin = require('mason-registry')
         .get_package('vue-language-server')
         :get_install_path()

@@ -107,4 +107,15 @@ return require('packer').startup(function(use)
       'lewis6991/gitsigns.nvim',
   }
 
+  -- DAP (Debugger Adapter Protocol)
+  use {
+      'mfussenegger/nvim-dap',
+	  requires = {
+          {'rcarriga/nvim-dap-ui'},
+          {'nvim-neotest/nvim-nio'},
+          {'jay-babu/mason-nvim-dap.nvim'},
+          {'theHamsta/nvim-dap-virtual-text'},
+	  }
+  }
+
 end)

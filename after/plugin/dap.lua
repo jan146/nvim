@@ -53,6 +53,18 @@ end, { desc = "Terminate", nowait = true, remap = false })
 
 -- Python
 local venv_bin_python = os.getenv("VIRTUAL_ENV") and (os.getenv("VIRTUAL_ENV") .. "/bin/python") or nil
+function get_path_binary ()
+  local cwd = vim.fn.getcwd()
+  if vim.fn.executable(venv_bin_python) == 1 then
+    return venv_bin_python
+  elseif vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+    return cwd .. '/venv/bin/python'
+  elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+    return cwd .. '/.venv/bin/python'
+  else
+    return '/usr/bin/python'
+  end
+end
 dap.adapters.python = function(cb, config)
   if config.request == 'attach' then
     ---@diagnostic disable-next-line: undefined-field
@@ -70,7 +82,7 @@ dap.adapters.python = function(cb, config)
   else
     cb({
       type = 'executable',
-      command = venv_bin_python,
+      command = get_path_binary(),
       args = { '-m', 'debugpy.adapter' },
       options = {
         source_filetype = 'python',
@@ -89,21 +101,21 @@ dap.configurations.python = {
     -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
 
     program = "${file}"; -- This configuration will launch the current file if used.
-    pythonPath = function()
-      -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-      -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-      -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-      local cwd = vim.fn.getcwd()
-      if vim.fn.executable(venv_bin_python) == 1 then
-        return venv_bin_python
-      elseif vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-        return cwd .. '/venv/bin/python'
-      elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-        return cwd .. '/.venv/bin/python'
-      else
-        return '/usr/bin/python'
-      end
-    end;
+    pythonPath = get_path_binary;
+  },
+  {
+    type = 'python',
+    request = 'launch',
+    name = 'Run as module',
+    pythonPath = get_path_binary,
+    module = function()
+      -- Path without file extension
+      local file = vim.fn.expand('%:r')
+      -- Make the path relative
+      local rel_path = vim.fn.fnamemodify(file, ':.')
+      -- Replace / with .
+      return rel_path:gsub('/', '.')
+    end,
   },
 }
 

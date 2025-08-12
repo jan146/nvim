@@ -21,6 +21,20 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set('n', '<leader>en', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
 end)
 
+vim.lsp.config("basedpyright", {
+  settings = {
+    basedpyright = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true,
+        logLevel = "Trace", -- ["Error", "Warning", "Information", or "Trace"]
+      }
+    }
+  },
+  root_markers = {"pyrightconfig.json"}
+})
+
 -- to learn how to use mason.nvim
 -- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guide/integrate-with-mason-nvim.md
 require('mason').setup({})
@@ -33,19 +47,7 @@ require('mason-lspconfig').setup({
   handlers = {
     function(server_name)
       local lspconfig = require("lspconfig")
-      -- if server_name == "basedpyright" then
-      --   lspconfig[server_name].setup({
-      --     settings = {
-      --       basedpyright = {
-      --         analysis = {
-      --           logLevel = "trace"
-      --         }
-      --       }
-      --     }
-      --   })
-      -- else
-        lspconfig[server_name].setup({})
-      -- end
+      lspconfig[server_name].setup({})
     end,
     vue_ls = function()
       require('lspconfig').vue_ls.setup({})

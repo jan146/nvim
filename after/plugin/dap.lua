@@ -44,6 +44,9 @@ vim.keymap.set("n", "<leader>dl", dap.list_breakpoints, { desc = "List Breakpoin
 vim.keymap.set("n", "<leader>de", function()
   dap.set_exception_breakpoints({ "all" })
 end, { desc = "Set Exception Breakpoints", nowait = true, remap = false })
+vim.keymap.set("n", "<leader>dt", function()
+  ui.toggle()
+end, { desc = "Toggle DAP UI", nowait = true, remap = false })
 
 vim.keymap.set("n", "<leader>dq", function()
   dap.terminate()

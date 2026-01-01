@@ -1,13 +1,4 @@
 require'nvim-treesitter.configs'.setup {
-    -- Colored brackets
-    rainbow = {
-        enable = false,
-        -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-        extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-        -- colors = {}, -- table of hex strings
-        -- termcolors = {} -- table of colour name strings
-    },
     -- A list of parser names, or "all" (the five listed parsers should always be installed)
     ensure_installed = { "bash", "typescript", "javascript", "python", "c", "lua", "vim", "vimdoc", "query" },
 
@@ -48,9 +39,3 @@ require'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = false,
     },
 }
-
--- Force update rainbow brackets on text change
--- vim.api.nvim_create_autocmd({"TextChanged", "TextChangedI", "TextChangedP", "TextChangedT"}, {
---   pattern = "*",
---   command = "TSDisable rainbow | TSEnable rainbow",
--- })

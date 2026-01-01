@@ -41,9 +41,12 @@ return require('packer').startup(function(use)
 		  local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
 		  ts_update()
 	  end,
-      requires = {
-        'p00f/nvim-ts-rainbow',
-      },
+  }
+
+
+  -- Rainbow brackets
+  use {
+	  'hiphish/rainbow-delimiters.nvim',
   }
 
 

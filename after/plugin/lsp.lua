@@ -36,7 +36,7 @@ vim.lsp.config("basedpyright", {
 })
 
 -- to learn how to use mason.nvim
--- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guide/integrate-with-mason-nvim.md
+-- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v4.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
@@ -46,11 +46,9 @@ require('mason-lspconfig').setup({
   },
   handlers = {
     function(server_name)
-      local lspconfig = require("lspconfig")
-      lspconfig[server_name].setup({})
-    end,
-    vue_ls = function()
-      require('lspconfig').vue_ls.setup({})
+      -- local lspconfig = require("lspconfig")
+      -- lspconfig[server_name].setup({})
+      vim.lsp.config[server_name] = {}
     end,
     ts_ls = function()
       local vue_typescript_plugin = require('mason-registry')
@@ -59,7 +57,7 @@ require('mason-lspconfig').setup({
         .. '/node_modules/@vue/language-server'
         .. '/node_modules/@vue/typescript-plugin'
 
-      require('lspconfig').tsserver.setup({
+      vim.lsp.config.tsserver = {
         init_options = {
           plugins = {
             {
@@ -78,7 +76,7 @@ require('mason-lspconfig').setup({
           'typescript.tsx',
           'vue',
         },
-      })
+      }
     end,
   },
 })
@@ -86,9 +84,6 @@ require('mason-lspconfig').setup({
 vim.api.nvim_create_user_command("LspInfo", function()
   vim.cmd("checkhealth vim.lsp")
 end, {})
-
--- here you can setup the language servers
--- require('lspconfig').example_server.setup({})
 
 -- Completions
 local cmp = require('cmp')

@@ -83,6 +83,10 @@ require('mason-lspconfig').setup({
   },
 })
 
+vim.api.nvim_create_user_command("LspInfo", function()
+  vim.cmd("checkhealth vim.lsp")
+end, {})
+
 -- here you can setup the language servers
 -- require('lspconfig').example_server.setup({})
 

@@ -40,6 +40,10 @@
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/williamboman/mason.nvim"
     },
+    "neopywal.nvim": {
+      "rev": "acbd8e17d7faf1744ba8208b29eeca3153735e2f",
+      "src": "https://github.com/RedsXDD/neopywal.nvim"
+    },
     "nvim": {
       "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
       "src": "https://github.com/catppuccin/nvim"
@@ -88,13 +92,9 @@
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
-    "pywal-complete.nvim": {
-      "rev": "d2c89619b4b59e7fb626b6661e749ad3c71bb4c1",
-      "src": "https://github.com/parz3val/pywal-complete.nvim"
-    },
-    "pywal.nvim": {
-      "rev": "d11b673c0e3d6eb8cbee7ea8cf4a8911f6ee24b9",
-      "src": "https://github.com/AlphaTechnolog/pywal.nvim"
+    "pywal16.nvim": {
+      "rev": "6210a13976d2fce09b5b1022944e8573e04d6d02",
+      "src": "https://github.com/uZer/pywal16.nvim"
     },
     "rainbow-delimiters.nvim": {
       "rev": "65734f76783705255d9ede8a6e4692e1572801a5",

@@ -9,8 +9,8 @@ end })
 vim.pack.add({
   'https://github.com/nvim-telescope/telescope.nvim',
   'https://github.com/nvim-lua/plenary.nvim',
-  'https://github.com/AlphaTechnolog/pywal.nvim',
-  'https://github.com/parz3val/pywal-complete.nvim',
+  'https://github.com/uZer/pywal16.nvim',
+  'https://github.com/RedsXDD/neopywal.nvim',
   'https://github.com/catppuccin/nvim',
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/hiphish/rainbow-delimiters.nvim',

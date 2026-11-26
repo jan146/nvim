@@ -1,8 +1,11 @@
-# Source: https://github.com/nvim-treesitter/nvim-treesitter/discussions/8357
+-- Source: https://github.com/nvim-treesitter/nvim-treesitter/discussions/8357
+-- Make sure to install tree-sitter-cli via OS package manager if vim.pack did not install it
 local treesitter = require("nvim-treesitter")
+local langs = { 'python', 'bash', 'java', 'c', 'lua', 'vim', 'javascript', 'typescript', 'html', 'yaml' }
 treesitter.setup()
+treesitter.install(langs)
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'python', 'bash', 'java', 'c', 'lua', 'vim', 'javascript', 'typescript', 'html', 'yaml' },
+  pattern = langs,
   callback = function()
     -- syntax highlighting, provided by Neovim
     vim.treesitter.start()
